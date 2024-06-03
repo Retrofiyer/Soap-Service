@@ -16,7 +16,11 @@
     ],
     "routes": [
         {
-            "src": "/wsdl?wsdl",
+            "src": "/saveUser",
+            "dest": "/index.js"
+        },
+        {
+            "src": "/getUsers",
             "dest": "/index.js"
         },
         {
