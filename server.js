@@ -70,5 +70,5 @@ const server = http.createServer(app);
 soap.listen(server, '/wsdl', service, wsdl);
 
 server.listen(8000, () => {
-    console.log('Server is running at http://localhost:8000');
+    console.log('Servidor corriendo en el puerto:8000');
 });
