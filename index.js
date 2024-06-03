@@ -32,7 +32,6 @@ const service = {
             },
             GetUsers: (args, callback) => {
                 const data = readData();
-                console.log('GetUsers called:', data);
                 callback(null, data);
             }
         }
