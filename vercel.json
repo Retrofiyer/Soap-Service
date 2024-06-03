@@ -37,6 +37,5 @@
         "src": "/wsdl",
         "methods": ["GET", "POST"],
         "dest": "/index.js"
-      }
     ]
   }  

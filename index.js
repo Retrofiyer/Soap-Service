@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 
 const app = express();
+const port = process.env.PORT || 8000;
 app.use(express.json());
 
 const dbPath = path.join(__dirname, 'db.json');
@@ -69,6 +70,6 @@ const server = http.createServer(app);
 
 soap.listen(server, '/wsdl', service, wsdl);
 
-server.listen(8000, () => {
-    console.log('Servidor corriendo en el puerto: 8000');
+server.listen(port, () => {
+    console.log(`Servidor corriendo en el puerto: ${port}`);
 });
