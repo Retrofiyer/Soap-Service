@@ -30,6 +30,10 @@
                 .then(response => response.json())
                 .then(data => {
                     const userList = document.getElementById('userList');
+                    if (!data.usuarios) {
+                        console.error('Unexpected response structure:', data);
+                        return;
+                    }
                     userList.innerHTML = data.usuarios.map(user => `
                         <div class="card mb-2">
                             <div class="card-body">

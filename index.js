@@ -32,6 +32,7 @@ const service = {
             },
             GetUsers: (args, callback) => {
                 const data = readData();
+                console.log('GetUsers called:', data); // Log para depurar
                 callback(null, data);
             }
         }
@@ -46,7 +47,7 @@ app.get('/', (req, res) => {
 
 app.post('/saveUser', (req, res) => {
     const user = req.body;
-    soap.createClient(`${req.protocol}://${req.get('host')}/wsdl?wsdl`, (err, client) => {
+    soap.createClient(`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
         if (err) return res.status(500).send(err);
         client.SaveUser(user, (err, result) => {
             if (err) return res.status(500).send(err);
@@ -56,7 +57,7 @@ app.post('/saveUser', (req, res) => {
 });
 
 app.get('/getUsers', (req, res) => {
-    soap.createClient(`${req.protocol}://${req.get('host')}/wsdl?wsdl`, (err, client) => {
+    soap.createClient(`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
         if (err) return res.status(500).send(err);
         client.GetUsers({}, (err, result) => {
             if (err) return res.status(500).send(err);
@@ -70,5 +71,5 @@ const server = http.createServer(app);
 soap.listen(server, '/wsdl', service, wsdl);
 
 server.listen(8000, () => {
-    console.log('Servidor corriendo en el puerto:8000');
+    console.log('Servidor corriendo en el puerto: 8000');
 });
