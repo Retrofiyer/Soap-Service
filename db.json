@@ -9,6 +9,11 @@
       "nombre": "Sebastian",
       "apellido": "Carrera",
       "edad": 22
+    },
+    {
+      "nombre": "Pedro",
+      "apellido": "Vicente",
+      "edad": 70
     }
   ]
 }

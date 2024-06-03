@@ -32,7 +32,7 @@ const service = {
             },
             GetUsers: (args, callback) => {
                 const data = readData();
-                console.log('GetUsers called:', data); // Log para depurar
+                console.log('GetUsers called:', data);
                 callback(null, data);
             }
         }
