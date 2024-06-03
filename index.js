@@ -70,10 +70,10 @@ app.get('/getUsers', (req, res) => {
     const wsdlUrl = process.env.NODE_ENV === 'production' 
         ? `https://${req.headers.host}/wsdl?wsdl` 
         : `http://localhost:${port}/wsdl?wsdl`;
-    console.log(`Creating SOAP client with WSDL URL: ${wsdlUrl}`);
+    console.log(`Obeteniendo a los usuarios: ${wsdlUrl}`);
     soap.createClient(wsdlUrl, (err, client) => {
         if (err) {
-            console.error('Error creating SOAP client:', err);
+            console.error('EError al cargar usuarios:', err);
             return res.status(500).send(err);
         }
         client.GetUsers({}, (err, result) => {

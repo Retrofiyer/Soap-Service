@@ -6,52 +6,45 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script>
         const saveUser = () => {
-            const form = document.getElementById('userForm');
-            const user = {
-                nombre: form.nombre.value,
-                apellido: form.apellido.value,
-                edad: parseInt(form.edad.value, 10)
-            };
-            fetch('/saveUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(user)
-            }).then(response => response.json()).then(data => {
-                console.log('SaveUser response:', data);
-                form.reset();
-            }).catch(error => {
-                console.error('Error in saveUser:', error);
-                alert('Error al guardar el usuario: ' + error.message);
-            });
-        };
-    
-        const loadUsers = () => {
-            fetch('/getUsers')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('GetUsers response:', data);
-                    const userList = document.getElementById('userList');
-                    if (!data.usuarios) {
-                        console.error('Unexpected response structure:', data);
-                        return;
-                    }
-                    userList.innerHTML = data.usuarios.map(user => `
-                        <div class="card mb-2">
-                            <div class="card-body">
-                                <p class="card-text"><strong>Nombre:</strong> ${user.nombre}</p>
-                                <p class="card-text"><strong>Apellido:</strong> ${user.apellido}</p>
-                                <p class="card-text"><strong>Edad:</strong> ${user.edad} años</p>
-                            </div>
-                        </div>
-                    `).join('');
-                })
-                .catch(error => {
-                    console.error('Error in loadUsers:', error);
-                    alert('Error al cargar los usuarios: ' + error.message);
-                });
-        };
+    const form = document.getElementById('userForm');
+    const user = {
+        nombre: form.nombre.value,
+        apellido: form.apellido.value,
+        edad: parseInt(form.edad.value, 10)
+    };
+    fetch(`${window.location.origin}/saveUser`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    }).then(response => response.json()).then(data => {
+        console.log(data);
+        form.reset();
+    }).catch(error => console.error(error));
+};
+
+const loadUsers = () => {
+    fetch(`${window.location.origin}/getUsers`)
+        .then(response => response.json())
+        .then(data => {
+            const userList = document.getElementById('userList');
+            if (!data.usuarios) {
+                console.error('Unexpected response structure:', data);
+                return;
+            }
+            userList.innerHTML = data.usuarios.map(user => `
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <p class="card-text"><strong>Nombre:</strong> ${user.nombre}</p>
+                        <p class="card-text"><strong>Apellido:</strong> ${user.apellido}</p>
+                        <p class="card-text"><strong>Edad:</strong> ${user.edad} años</p>
+                    </div>
+                </div>
+            `).join('');
+        })
+        .catch(error => console.error(error));
+};
     </script>
 </head>
 <body>
