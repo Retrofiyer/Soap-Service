@@ -13,15 +13,15 @@
     "routes": [
         {
             "src":"/saveUser",
-            "dest":"server.js"
+            "dest":"index.js"
         },
         {
             "src":"/getUsers",
-            "dest":"server.js"
+            "dest":"index.js"
         },
         {
             "src":"/wsdl(.*)",
-            "dest":"server.js"
+            "dest":"index.js"
         },
         {
             "src":"/(.*)",
