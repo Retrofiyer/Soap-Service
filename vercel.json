@@ -8,14 +8,6 @@
       {
         "src": "index.html",
         "use": "@vercel/static"
-      },
-      {
-        "src": "db.json",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "service.wsdl",
-        "use": "@vercel/static"
       }
     ],
     "routes": [

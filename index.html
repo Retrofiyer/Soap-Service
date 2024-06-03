@@ -19,15 +19,19 @@
                 },
                 body: JSON.stringify(user)
             }).then(response => response.json()).then(data => {
-                console.log(data);
+                console.log('SaveUser response:', data);
                 form.reset();
-            }).catch(error => console.error(error));
+            }).catch(error => {
+                console.error('Error in saveUser:', error);
+                alert('Error al guardar el usuario: ' + error.message);
+            });
         };
-
+    
         const loadUsers = () => {
             fetch('/getUsers')
                 .then(response => response.json())
                 .then(data => {
+                    console.log('GetUsers response:', data);
                     const userList = document.getElementById('userList');
                     if (!data.usuarios) {
                         console.error('Unexpected response structure:', data);
@@ -43,7 +47,10 @@
                         </div>
                     `).join('');
                 })
-                .catch(error => console.error(error));
+                .catch(error => {
+                    console.error('Error in loadUsers:', error);
+                    alert('Error al cargar los usuarios: ' + error.message);
+                });
         };
     </script>
 </head>

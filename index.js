@@ -50,10 +50,17 @@ app.post('/saveUser', (req, res) => {
     const wsdlUrl = process.env.NODE_ENV === 'production' 
         ? `https://${req.headers.host}/wsdl?wsdl` 
         : `http://localhost:${port}/wsdl?wsdl`;
+    console.log(`Creating SOAP client with WSDL URL: ${wsdlUrl}`);
     soap.createClient(wsdlUrl, (err, client) => {
-        if (err) return res.status(500).send(err);
+        if (err) {
+            console.error('Error creating SOAP client:', err);
+            return res.status(500).send(err);
+        }
         client.SaveUser(user, (err, result) => {
-            if (err) return res.status(500).send(err);
+            if (err) {
+                console.error('Error calling SaveUser:', err);
+                return res.status(500).send(err);
+            }
             res.send(result);
         });
     });
@@ -63,10 +70,17 @@ app.get('/getUsers', (req, res) => {
     const wsdlUrl = process.env.NODE_ENV === 'production' 
         ? `https://${req.headers.host}/wsdl?wsdl` 
         : `http://localhost:${port}/wsdl?wsdl`;
+    console.log(`Creating SOAP client with WSDL URL: ${wsdlUrl}`);
     soap.createClient(wsdlUrl, (err, client) => {
-        if (err) return res.status(500).send(err);
+        if (err) {
+            console.error('Error creating SOAP client:', err);
+            return res.status(500).send(err);
+        }
         client.GetUsers({}, (err, result) => {
-            if (err) return res.status(500).send(err);
+            if (err) {
+                console.error('Error calling GetUsers:', err);
+                return res.status(500).send(err);
+            }
             res.send(result);
         });
     });
