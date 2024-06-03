@@ -12,6 +12,14 @@
     ],
     "routes": [
         {
+            "src":"/saveUser",
+            "dest":"server.js"
+        },
+        {
+            "src":"/getUsers",
+            "dest":"server.js"
+        },
+        {
             "src":"/wsdl(.*)",
             "dest":"server.js"
         },
