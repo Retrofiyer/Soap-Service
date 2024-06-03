@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 
 app.post('/saveUser', (req, res) => {
     const user = req.body;
-    soap.createClient(`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
+    soap.createClient('https://soap-service.vercel.app/wsdl?wsdl'||`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
         if (err) return res.status(500).send(err);
         client.SaveUser(user, (err, result) => {
             if (err) return res.status(500).send(err);
@@ -57,7 +57,7 @@ app.post('/saveUser', (req, res) => {
 });
 
 app.get('/getUsers', (req, res) => {
-    soap.createClient(`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
+    soap.createClient('https://soap-service.vercel.app/wsdl?wsdl'||`http://${req.headers.host}/wsdl?wsdl`, (err, client) => {
         if (err) return res.status(500).send(err);
         client.GetUsers({}, (err, result) => {
             if (err) return res.status(500).send(err);
