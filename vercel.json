@@ -32,7 +32,7 @@
             "dest": "/index.js"
         },
         {
-            "src": "/(.*)",
+            "src": "/",
             "dest": "/index.html"
         }
     ]
