@@ -14,6 +14,16 @@
       "nombre": "Pedro",
       "apellido": "Vicente",
       "edad": 70
+    },
+    {
+      "nombre": "Edwin",
+      "apellido": "Mendez",
+      "edad": 26
+    },
+    {
+      "nombre": "Emily",
+      "apellido": "Solano",
+      "edad": 25
     }
   ]
 }
